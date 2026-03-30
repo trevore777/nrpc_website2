@@ -22,7 +22,6 @@ export async function POST(req: Request) {
 You are summarising a Christian Pentecostal sermon.
 
 Return:
-
 1. Title (short and clear)
 2. 100-word summary
 3. 3-5 key points
@@ -34,10 +33,10 @@ ${transcript}
       `
     });
 
-    const text = response.output[0].content[0].text;
+    const text = response.output_text || "";
 
     return NextResponse.json({ result: text });
-  } catch (err) {
+  } catch {
     return NextResponse.json(
       { error: "Failed to summarise sermon" },
       { status: 500 }
